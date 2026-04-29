@@ -1,0 +1,49 @@
+# Environment & secrets
+.env
+.env.local
+*.pem
+*.key
+
+# Cookies & auth (contains session tokens)
+dac-auth.json
+dac-cookies.json
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+dist/
+build/
+*.egg
+
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Screenshots (debug artifacts)
+/tmp/*.png
+
+# Test results
+test-results/
+
+# Virtual environments
+.venv/
+venv/
+.env/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Cron output
+output/
+logs/
