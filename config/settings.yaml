@@ -1,0 +1,7 @@
+project: dac-automation
+network:
+  chain_id: 21894
+  rpc_url: https://rpctest.dachain.tech
+  api_base: https://inception.dachain.io/api/inception
+defaults:
+  tx_amount: 0.001

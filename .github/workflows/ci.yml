@@ -1,0 +1,52 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  lint-and-smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Install deps
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          npm ci
+      - name: Python compile check
+        run: |
+          python -m py_compile automation/python/dac_auto.py
+          python -m py_compile scripts/run.py
+          python -m py_compile core/engine.py
+          python -m py_compile core/network.py
+          python -m py_compile core/wallet.py
+          python -m py_compile core/logger.py
+          python -m py_compile core/scheduler.py
+          python -m py_compile modules/dac/detect_dac.py
+          python -m py_compile modules/faucet/claim_faucet.py
+          python -m py_compile modules/transaction/send_tx.py
+          python -m py_compile modules/mint/mint_badge.py
+          python -m py_compile modules/account/create_account.py
+          python -m py_compile strategies/daily_run.py
+          python -m py_compile strategies/aggressive.py
+          python -m py_compile utils/helper.py
+          python -m py_compile utils/retry.py
+          python -m py_compile utils/proxy.py
+      - name: Node syntax check
+        run: |
+          node --check automation/js/dac-auth.js
+          node --check automation/js/dac-refresh.js
+          node --check automation/js/config.js
+      - name: CLI smoke
+        run: |
+          python automation/python/dac_auto.py --help
+          python scripts/run.py --help
+      - name: Run tests
+        run: python -m pytest tests/ -v
