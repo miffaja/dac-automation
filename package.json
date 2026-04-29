@@ -1,4 +1,16 @@
+
 {
+  "name": "dac-automation",
+  "version": "1.1.0",
+  "private": true,
+  "description": "Agent-ready DAC Inception testnet automation toolkit",
+  "scripts": {
+    "auth": "node automation/js/dac-auth.js",
+    "refresh-auth": "node automation/js/dac-refresh.js",
+    "profile": "python3 automation/python/dac_auto.py profile",
+    "full": "python3 automation/python/dac_auto.py full",
+    "lint:js": "node --check automation/js/dac-auth.js && node --check automation/js/dac-refresh.js && node --check automation/js/config.js"
+  },
   "dependencies": {
     "playwright": "^1.59.1"
   }

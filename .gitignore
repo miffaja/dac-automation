@@ -47,3 +47,8 @@ venv/
 # Cron output
 output/
 logs/
+
+automation/**/__pycache__/
+automation/**/*.pyc
+/tmp/dac-auth.json
+/tmp/dac-cookies.json
