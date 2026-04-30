@@ -1,6 +1,10 @@
 #!/usr/bin/env python3
 import argparse
 import json
+import os
+import sys
+# Add repo root to path so 'core', 'modules', 'strategies' are importable
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from core.engine import Engine
 from strategies.daily_run import run as daily
 from strategies.aggressive import run as aggressive
